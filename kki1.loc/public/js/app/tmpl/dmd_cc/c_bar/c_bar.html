@@ -1,0 +1,50 @@
+﻿<style type="text/css">
+
+    body {
+        margin: 0;
+    }
+
+    #map {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    h3 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .pane {
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 5px;
+        color: #000;
+        margin: 10px 0px 25px 0px;
+        max-width: 70px;
+    }
+    .pane-text {
+        width: 70px;
+        border: 1px solid #333;
+        padding: 5px;
+        font-size: 18px;
+        word-break: break-all;
+    }
+</style>
+<div class="pane pane-text">
+    <div ng-switch on="rqidt">
+        <h6 ng-switch-when="0">
+            Включение в ЗНОП
+        </h6>
+        <h6 ng-switch-when="1">
+            Исключение из ЗНОП
+        </h6>
+        <h6 ng-switch-when="2">
+            Изменение статуса ЗНОП
+        </h6>
+        <h6 ng-switch-when="3">
+            Изменение границ ЗНОП
+        </h6>
+    </div>
+    <!--<button ng-click="zoom()">Zoom In</button>
+    <button ng-click="zoomO()">Zoom Out</button>-->
+</div>

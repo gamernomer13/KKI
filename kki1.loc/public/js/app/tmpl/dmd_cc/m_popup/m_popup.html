@@ -1,0 +1,117 @@
+﻿<!--<style>
+    .leaflet-popup-content {
+        min-width: 200px;
+        max-width: 350px;
+        max-height: 350px;
+        min-height: 20px;
+        overflow-y: scroll;
+    }
+</style>-->
+<span ng-hide="!features" ng-repeat="f in features">
+    <span ng-switch on="f.properties.obtypeuid">
+        <span ng-switch-when="ЗНОП">
+            <font color='#808080'>
+                ЗНОП городского значения
+            </font>
+            </br>
+            <span ng-class="{'text-success': f.id === fid}">
+                Объект: {{f.properties.name}}
+            </span>
+            <br />
+            <br />
+            <span ng-switch on="rqid">
+                <span ng-switch-when="0">
+                </span>
+                <span ng-switch-when="1">
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button">Исключить</button><br />
+                </span>
+                <span ng-switch-when="2">
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button">Изменить статус</button><br />
+                </span>
+                <span ng-switch-when="3">
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button" ng-hide="f.id === fid">Изменить границы</button>
+                    <span class="text-success" ng-show="f.id === fid">
+                        (Объект выбран)
+                    </span>
+                    <br />
+                </span>
+                <span ng-switch-default>
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button">Выбрать объект</button><br />
+                </span>
+            </span>
+        </span>
+        <span ng-switch-when="ОКН">
+            <font color='#808080'>
+                Объекты культурного наследия
+            </font>
+            </br>
+            Объект: {{f.properties.name}}
+            <br />
+        </span>
+        <span ng-switch-when="Внутриквартальное озеленение">
+            <font color='#808080'>
+                ЗНОП местного значения
+            </font>
+            </br>
+            <span ng-class="{'text-success': f.id === fid}">
+                Объект: {{f.properties.name}}
+            </span>
+            <br />
+            <br />
+            <span ng-switch on="rqid">
+                <span ng-switch-when="0">
+                </span>
+                <span ng-switch-when="1">
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button">Исключить</button><br />
+                </span>
+                <span ng-switch-when="2">
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button">Изменить статус</button><br />
+                </span>
+                <span ng-switch-when="3">
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button" ng-hide="f.id === fid">Изменить границы</button>
+                    <span class="text-success" ng-show="f.id === fid">
+                        (Объект выбран)
+                    </span>
+                    <br />
+                </span>
+                <span ng-switch-default>
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button">Выбрать объект</button><br />
+                </span>
+            </span>
+        </span>
+        <span ng-switch-when="АД">
+            <font color='#808080'>
+                Автомобильные дороги
+            </font>
+            </br>
+            Объект: {{f.properties.name}}
+            <br />
+        </span>
+        <span ng-switch-when="Фасад">
+            <font color='#808080'>
+                Фасады
+            </font>
+            </br>
+            Объект: {{f.properties.name}}
+            </br>
+            Адрес: {{f.properties.address}}
+            <br />
+        </span>
+        <span ng-switch-default>
+            <font color='#808080'>
+                {{f.properties.obtypeuid}}
+            </font>
+            </br>
+            Объект: {{f.properties.name}}
+            <br />
+        </span>
+    </span>
+    <hr ng-if="!$last">
+</span>
+<span ng-show="features.length === 0">
+    Нет данных
+    <br>
+    <!--Вкючите слой,
+    <br>
+    или выберете другую точку.-->
+</span>

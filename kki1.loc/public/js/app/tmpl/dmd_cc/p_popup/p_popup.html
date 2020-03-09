@@ -1,0 +1,230 @@
+﻿<span ng-show="features.length > '0'">
+    <span ng-switch on="rqid">
+        <span ng-switch-when="0">
+            <span class="text-danger">
+                Найдены объекты ЗНОП на расстоянии 15 метров от обозначенной области. Если Вы хотите изменить границы существующего ЗНОП нажмите на кнопку «Изменить тип заявки» у выбранного ЗНОП.
+            </span>
+        </span>
+        <span ng-switch-when="1">
+            <span class="text-muted">
+                Выберите объект
+            </span>
+        </span>
+        <span ng-switch-when="2">
+            <span class="text-muted">
+                Выберите объект
+            </span>
+        </span>
+        <span ng-switch-when="3">
+            <span class="text-muted">
+                Выберите объект
+            </span>
+        </span>
+        <span ng-switch-default>
+            <span class="text-muted">
+                Выберите объект
+            </span>
+        </span>
+    </span>
+    <br />
+    <br />
+    <hr />
+</span>
+<span ng-show="features.length > '0'" ng-repeat="f in features">
+    <span ng-switch on="f.properties.obtypeuid">
+        <span ng-switch-when="ЗНОП">
+            <span ng-class="{'text-success': f.id === fid, 'text-muted': f.id !== fid}">
+                ЗНОП городского значения
+            </span>
+            <br />
+            <span ng-class="{'text-success': f.id === fid}">
+                Объект: {{f.properties.name}}
+            </span>
+            <br />
+            <br />
+            <!--<span ng-switch on="rqid" ng-hide="f.id == fid">-->
+            <span ng-switch on="rqid">
+                <span ng-switch-when="0">
+                    <button ng-click="gfWithRChange(f)" class="button btn-danger-min sidebar-open-button">Изменить тип заявки</button><br />
+                </span>
+                <span ng-switch-when="1">
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button">Исключить</button><br />
+                </span>
+                <span ng-switch-when="2">
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button">Изменить статус</button><br />
+                </span>
+                <span ng-switch-when="3">
+                    <span ng-hide="f.id === fid">
+                        <button ng-click="pushPoly(f)" class="button btn-success-min sidebar-open-button">Выбрать этот объект и добавить геометрию</button>
+                        <br />
+                        <br />
+                        <button ng-click="repPoly(f)" class="button btn-alert-min sidebar-open-button">Заменить геометрию выбранного объекта</button>
+                        <br />
+                        <br />
+                        <button ng-click="cutPoly(f)" class="button btn-danger-min sidebar-open-button">Выбрать этот объект и удалить геометрию</button>
+                    </span>
+                    <span ng-show="f.id === fid">
+                        <button ng-click="pushPoly(f)" class="button btn-success-min sidebar-open-button">Добавить геометрию к выбранному объекту</button>
+                        <br />
+                        <br />
+                        <button ng-click="repPoly(f)" class="button btn-alert-min sidebar-open-button">Заменить геометрию выбранного объекта</button>
+                        <br />
+                        <br />
+                        <button ng-click="cutPoly(f)" class="button btn-danger-min sidebar-open-button">Вырезать геометрию из выбранного объекта</button>
+                    </span>
+                    <br />
+                </span>
+                <span ng-switch-default>
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button">Выбрать объект</button><br />
+                </span>
+            </span>
+            <!--<button ng-click="getFeature(f)" class="btn-success-min sidebar-open-button">Выбрать объект</button><br />-->
+            <!--<a ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button" href="#znopForm">Выбрать объект</a><br />-->
+            <!--<a ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button">Выбрать объект</a><br />-->
+        </span>
+        <span ng-switch-when="ОКН">
+            <span class="text-muted">
+                Объекты культурного наследия
+            </span>
+            <br />
+            Объект: {{f.properties.name}}
+            <br />
+        </span>
+        <span ng-switch-when="Внутриквартальное озеленение">
+            <span ng-class="{'text-success': f.id === fid, 'text-muted': f.id !== fid}">
+                ЗНОП местного значения
+            </span>
+            <br />
+            <span ng-class="{'text-success': f.id === fid}">
+                Объект: {{f.properties.name}}
+            </span>
+            <br />
+            <br />
+            <!--<span ng-switch on="rqid" ng-hide="f.id == fid">-->
+            <span ng-switch on="rqid">
+                <span ng-switch-when="0">
+                    <button ng-click="gfWithRChange(f)" class="button btn-danger-min sidebar-open-button">Изменить тип заявки</button><br />
+                </span>
+                <span ng-switch-when="1">
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button">Исключить</button><br />
+                </span>
+                <span ng-switch-when="2">
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button">Изменить статус</button><br />
+                </span>
+                <span ng-switch-when="3">
+                    <span ng-hide="f.id === fid">
+                        <button ng-click="pushPoly(f)" class="button btn-success-min sidebar-open-button">Выбрать этот объект и добавить геометрию</button>
+                        <br />
+                        <br />
+                        <button ng-click="repPoly(f)" class="button btn-alert-min sidebar-open-button">Заменить геометрию выбранного объекта</button>
+                        <br />
+                        <br />
+                        <button ng-click="cutPoly(f)" class="button btn-danger-min sidebar-open-button">Выбрать этот объект и удалить геометрию</button>
+                    </span>
+                    <button ng-click="repPoly(f)" class="button btn-success-min sidebar-open-button" ng-hide="f.id === fid">Выбрать этот объект для изменения</button>
+                    <span ng-show="f.id === fid">
+                        <button ng-click="pushPoly(f)" class="button btn-success-min sidebar-open-button">Добавить геометрию к выбранному объекту</button>
+                        <br />
+                        <br />
+                        <button ng-click="repPoly(f)" class="button btn-alert-min sidebar-open-button">Заменить геометрию выбранного объекта</button>
+                        <br />
+                        <br />
+                        <button ng-click="cutPoly(f)" class="button btn-danger-min sidebar-open-button">Вырезать геометрию из выбранного объекта</button>
+                    </span>
+                    <br />
+                </span>
+                <span ng-switch-default>
+                    <button ng-click="getFeature(f)" class="button btn-success-min sidebar-open-button">Выбрать объект</button><br />
+                </span>
+            </span>
+        </span>
+        <span ng-switch-when="АД">
+            <span class="text-muted">
+                Автомобильные дороги
+            </span>
+            <br />
+            Объект: {{f.properties.name}}
+            <br />
+        </span>
+        <span ng-switch-default>
+            <span class="text-muted">
+                {{f.properties.obtypeuid}}
+            </span>
+            <br />
+            Объект: {{f.properties.name}}
+            <br />
+        </span>
+    </span>
+    <hr ng-if="!$last" />
+</span>
+<span ng-show="features.length > '0' && rqid == '0'">
+    <hr />
+    <br />
+    <button ng-click="getDrawGeom()" class="button btn-success-min sidebar-open-button">Создать новый</button><br />
+</span>
+<span ng-show="features.length == '0'">
+    <span ng-switch on="rqid">
+        <span ng-switch-when="1">
+            <span class="text-muted">
+                Включить указанную область в ЗНОП
+            </span>
+            <span class="row">
+                <span class="col-md-6 mb-3">
+                    <button class="button btn-success-min sidebar-open-button" ng-click="getDrawGeom()">Да</button>
+                </span>
+                <span class="col-md-6 mb-3">
+                    <button class="button btn-alert-min sidebar-open-button" ng-click="clsp()">Нет</button>
+                </span>
+            </span>
+        </span>
+        <span ng-switch-when="1">
+            <span class="text-muted">
+                Включить указанную область в ЗНОП
+            </span>
+            <span class="row">
+                <span class="col-md-6 mb-3">
+                    <button class="button btn-success-min sidebar-open-button" ng-click="getDrawGeom()">Да</button>
+                </span>
+                <span class="col-md-6 mb-3">
+                    <button class="button btn-alert-min sidebar-open-button" ng-click="clsp()">Нет</button>
+                </span>
+            </span>
+        </span>
+        <span ng-switch-when="2">
+            <span class="text-muted">
+                Включить указанную область в ЗНОП
+            </span>
+            <span class="row">
+                <span class="col-md-6 mb-3">
+                    <button class="button btn-success-min sidebar-open-button" ng-click="getDrawGeom()">Да</button>
+                </span>
+                <span class="col-md-6 mb-3">
+                    <button class="button btn-alert-min sidebar-open-button" ng-click="clsp()">Нет</button>
+                </span>
+            </span>
+        </span>
+        <span ng-switch-when="3">
+            <span class="row">
+                <span class="text-muted">
+                    Для данного типа заявок, невозможно создание объектов на удалении более 15 метров от ЗНОП.
+                </span>
+            </span>
+        </span>
+        <span ng-switch-default>
+            <span class="text-secondary">
+                Включить указанную область в ЗНОП
+            </span>
+            <span class="row">
+                <span class="col-md-6 mb-3">
+                    <button class="button btn-success-min sidebar-open-button" ng-click="getDrawGeom()">Да</button>
+                </span>
+                <span class="col-md-6 mb-3">
+                    <button class="button btn-danger-min sidebar-open-button" ng-click="clsp()">Нет</button>
+                </span>
+            </span>
+        </span>
+    </span>
+</span>
+<!--<span ng-hide="features">
+    Нет данных.
+</span>-->
