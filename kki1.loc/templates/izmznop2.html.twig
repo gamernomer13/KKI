@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru" ng-app="mds.areas">
 <head>
-    
- {# <base href="http://dev5001.pob.adc.spb.ru/" target="_blank">#}
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>&#x420;&#x435;&#x433;&#x438;&#x441;&#x442;&#x440;&#x430;&#x446;&#x438;&#x44F; &#x437;&#x435;&#x43B;&#x451;&#x43D;&#x44B;&#x445; &#x43D;&#x430;&#x441;&#x430;&#x436;&#x434;&#x435;&#x43D;&#x438;&#x439; &#x43E;&#x431;&#x449;&#x435;&#x433;&#x43E; &#x43F;&#x43E;&#x43B;&#x44C;&#x437;&#x43E;&#x432;&#x430;&#x43D;&#x438;&#x44F; - mds.areas.web</title>
+    <title>&#x417;&#x430;&#x43F;&#x43E;&#x43B;&#x43D;&#x438;&#x442;&#x435; &#x444;&#x43E;&#x440;&#x43C;&#x443; - mds.areas.web</title>
 
 
 
@@ -19,7 +17,7 @@
     <link rel="stylesheet" href="/lib/leaflet-draw/dist/leaflet.draw-src.css" />
     <link rel="stylesheet" href="/lib/leaflet-minimap/dist/Control.MiniMap.min.css" />
     <link rel="stylesheet" href="/lib/leaflet.fullscreen/Control.FullScreen.min.css" />
-    <link rel="stylesheet" href="/js/leaflet-contro+l-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="/js/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <link rel="stylesheet" href="/lib/oi.select/dist/select.min.css" />
     <link rel="stylesheet" href="/lib/leaflet-control-bar/src/L.Control.Bar.css" />
 
@@ -43,40 +41,37 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/guide.pdf" target="_blank">Руководство пользователя</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#Form">Форма</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#myPage">Карта</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Главная</a></li>
+            </ul>
 
         </div>
     </div>
 </nav>
 
-
 <style>
-    body {
-        padding-top: 36px;
-    }
 </style>
-
-<body>
-<div id="Start" class="container-header">
-    <div class="col-md-8">
-        <section>
-            <h2>Регистрация зелёных насаждений общего пользования</h2>
-            <p>Для подачи заявление о проведении инвентаризации территории зелёных насаждений нажмите на кнопку "Подать заявку" или выберете объект на карте и нажмите кнопку подачи заявки в открывшемся окне.</p>
-        </section>
+<hr>
+<div ng-controller="dmd_cc">
+    <div id="Map" class="container-map">
+        <div id="drawMap" class="adaptive-map transformable" ng-class="{'adaptive-map-min':kKIZnopRequest.Geometry}"></div>
+        <div id="bar"></div>
     </div>
-    <div class="col-md-2  col-md-offset-2">
-        <section>
-            <br>
-            <br>
-            <a class="btn btn-success btn-lg" href="/lucky/number">
-                Подать заявку
-            </a>
-            <br>
-        </section>
+
+    <div id="infopanel" class="container container-form text-center animate-bottom" ng-show="kKIZnopRequest.Geometry">
+        <a class="button btn-success-min" href="#Form">Заполнить форму</a>
+    </div>
+
+    <div id="Form" class="container container-form text-center">
+        <ng-include src="dmd_cc_m_form"></ng-include>
     </div>
 </div>
-
-<cmd></cmd>
-</body>
 
 
 
@@ -124,35 +119,3 @@
 
 </body>
 </html>
-<style>
-    oi-select {
-        border-radius: 0 !important;
-    }
-
-    oi-select .select-search-list {
-        border-radius: 0 !important;
-        height: 31px;
-    }
-
-    select-search-list {
-        border-radius: 0 !important;
-    }
-
-    select-container {
-        height: 100px;
-    }
-
-    oi-select .select-search {
-        border-radius: 0 !important;
-    }
-
-    oi-select .btn {
-        padding: 0 !important;
-    }
-    .background-input-danger {
-        background-color: rgba(227, 74, 74, 0.39);
-    }
-    .background-input-succes {
-        background-color: rgba(51, 136, 32, 0.39);
-    }
-</style>

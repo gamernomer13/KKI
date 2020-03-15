@@ -4,13 +4,13 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-class ControllerIndex extends AbstractController
+class izmznopController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/lucky/number/izmznop2")
      */
-   public function index():Response
-   {
-       return $this->render('index.html.twig');
-   }
+    public function number(): Response
+    {
+        return $this->render('izmznop2.html.twig');
+    }
 }
