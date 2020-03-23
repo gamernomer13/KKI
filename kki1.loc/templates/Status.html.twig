@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru" ng-app="mds.areas">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>&#x417;&#x430;&#x43F;&#x43E;&#x43B;&#x43D;&#x438;&#x442;&#x435; &#x444;&#x43E;&#x440;&#x43C;&#x443; - mds.areas.web</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/main.min.css" />
+    <link rel="stylesheet" href="/css/site.min.css" />
+
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img style="max-width:50px; margin-top: -5px;" src="/images/blazon.png">
+            </a>
+            <h5 class="navbar-text">Комитет по контролю за имуществом Санкт-Петербурга</h5>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/guide.pdf" target="_blank">Руководство пользователя</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#Form">Форма</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#myPage">Карта</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Главная</a></li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<style>
+
+</style>
+<hr>
+<div ng-controller="dmd_cc">
+    <div id="Map" class="container-map">
+        <div id="bar"></div>
+    </div>
+
+    <div id="infopanel" class="container container-form text-center animate-bottom" ng-show="kKIZnopRequest.Geometry">
+        <a class="button btn-success-min" href="#Form">Заполнить форму</a>
+    </div>
+
+    <div id="Form" class="container container-form text-center">
+        <ng-include src="dmd_cc_m_form"></ng-include>
+    </div>
+</div>
+
+
+
+<footer class="text-center">
+    <a class="up-arrow hide-with" href="#myPage" data-toggle="tooltip" title="На верх">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+        <br><br>
+    </a>
+    <p>
+        <a href="http://gov.spb.ru" data-toggle="tooltip" title="Администрация Санкт-Петербурга">
+            Администрация Санкт-Петербурга: 191060, Санкт-Петербург, Смольный.
+            Справочная служба Администрации Санкт-Петербурга: (812) 576-41-11
+        </a>
+    </p>
+</footer>
+
+
+
+<style>
+
+</style>
+
+
+
+</body>
+</html>

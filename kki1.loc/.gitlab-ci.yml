@@ -1,0 +1,126 @@
+stages:
+  - compile
+  - deploy
+  - stub
+
+compile:
+  stage: compile
+  environment:
+    name: builder
+  tags:
+    - c#
+  only:
+    - master
+  script:
+    - pwd
+    #- dotnet build mds.areas.sln
+    - dotnet restore
+    - dotnet publish -c Release -r ubuntu.16.04-x64
+    - cd mds.areas.web\\bin\\Release\\netcoreapp2.0\\ubuntu.16.04-x64\\publish
+    - cmd /c ""C:\\Program Files\\7-Zip\\7z.exe" a -tzip mds_areas_web.zip ./"
+    - copy mds_areas_web.zip ..\\..\\..\\..\\..\\..
+    - cd %CI_PROJECT_DIR%
+    - pwd
+    - cd mds.areas.synchronization\\bin\\Release\\netcoreapp2.0\\ubuntu.16.04-x64\\publish
+    - cmd /c ""C:\\Program Files\\7-Zip\\7z.exe" a -tzip mds_areas_synchronization.zip ./" 
+    - copy mds_areas_synchronization.zip ..\\..\\..\\..\\..\\..
+  artifacts:
+    paths:
+      - mds_areas_web.zip
+      - mds_areas_synchronization.zip
+    expire_in: 1 week   
+      
+deploy to test:
+  stage: deploy
+  environment:
+    name: builder
+  tags:
+    - mono
+  only:
+    - master
+  script:
+    - pwd
+    - dir
+    - whoami
+    - hostname
+    - sudo supervisorctl stop mds_areas_web
+    - rm -fr /data/mds_areas_web/*
+    - unzip ./mds_areas_web.zip -d /data/mds_areas_web/
+    - sudo supervisorctl start mds_areas_web
+    - echo "mds_areas_synchronization"
+    - sudo supervisorctl stop mds_areas_synchronization
+    - rm -fr /data/mds_areas_synchronization/*
+    - unzip ./mds_areas_synchronization.zip -d /data/mds_areas_synchronization/
+    - sudo supervisorctl start mds_areas_synchronization
+  dependencies:
+    - compile
+
+deploy to prod:
+  stage: deploy
+  environment:
+    name: prod
+  when: manual
+  tags:
+    - inspector-prod
+  only:
+    - master
+  script:
+    - pwd
+    - dir
+    - whoami
+    - echo "Deploy mds_areas_web service"
+    - sudo supervisorctl stop mds_areas_web
+    - rm -fr /opt/kki/mds_areas_web/*
+    - unzip ./mds_areas_web.zip -d /opt/kki/mds_areas_web/
+    - rm -fr /opt/kki/mds_areas_web/appsettings.json
+    - ln -s /data/mds_areas/config/mds_areas_web/appsettings.json /opt/kki/mds_areas_web/appsettings.json
+    - sudo supervisorctl start mds_areas_web
+    - echo "Deploy mds_areas_synchronization service"
+    - sudo supervisorctl stop mds_areas_synchronization
+    - rm -fr /opt/kki/mds_areas_synchronization/*
+    - unzip ./mds_areas_synchronization.zip -d /opt/kki/mds_areas_synchronization/
+    - rm -fr /opt/kki/mds_areas_synchronization/appsettings.json
+    - ln -s /data/mds_areas/config/mds_areas_synchronization/appsettings.json /opt/kki/mds_areas_synchronization/appsettings.json
+    - sudo supervisorctl start mds_areas_synchronization
+  dependencies:
+    - compile
+    
+Set stub for TEST:
+  stage: stub
+  when: manual
+  tags:
+    - frontend-pob
+  only:
+    - master
+  script:
+    - sudo /opt/stub/stub.sh set test kki
+
+Unset stub for TEST:
+  stage: stub
+  when: manual
+  tags:
+    - frontend-pob
+  only:
+    - master
+  script:
+    - sudo /opt/stub/stub.sh unset test kki    
+    
+Set stub for PROD:
+  stage: stub
+  when: manual
+  tags:
+    - frontend-pob
+  only:
+    - master
+  script:
+    - sudo /opt/stub/stub.sh set prod kki
+
+Unset stub for PROD:
+  stage: stub
+  when: manual
+  tags:
+    - frontend-pob
+  only:
+    - master
+  script:
+    - sudo /opt/stub/stub.sh unset prod kki        

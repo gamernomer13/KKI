@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru" ng-app="mds.areas">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>&#x412;&#x44B;&#x431;&#x435;&#x440;&#x435;&#x442;&#x435; &#x442;&#x438;&#x43F; &#x437;&#x430;&#x44F;&#x432;&#x43A;&#x438;. - mds.areas.web</title>
+
+
+
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/main.min.css" />
+    <link rel="stylesheet" href="/css/site.min.css" />
+
+
+
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img style="max-width:50px; margin-top: -5px;" src="/images/blazon.png">
+            </a>
+            <h5 class="navbar-text">Комитет по контролю за имуществом Санкт-Петербурга</h5>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/guide.pdf" target="_blank">Руководство пользователя</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Главная</a></li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div id="SelectionMenu" class="container text-center">
+    <h3>Выберете тип заявки.</h3>
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <a class="btn btn-success btn-block" href="/Application/add?rqid=0">
+                        Включить в ЗНОП
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <a class="btn btn-success btn-block" href="/application/deletelznop?rqid=1">
+                        Исключить из ЗНОП
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <a class="btn btn-success btn-block" href="/Application/status/?rqid=2">
+                        Изменить статус ЗНОП
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <a class="btn btn-success btn-block" href="/Application/Change/?rqid=3">
+                        Изменить границы ЗНОП
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="Placeholder" class="container text-center">
+
+</div>
+<div id="Placeholder" class="container text-center">
+</div>
+<br><br>
+
+
+<footer class="text-center">
+    <a class="up-arrow hide-with" href="#myPage" data-toggle="tooltip" title="На верх">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+        <br><br>
+    </a>
+    <p>
+        <a href="http://gov.spb.ru" data-toggle="tooltip" title="Администрация Санкт-Петербурга">
+            Администрация Санкт-Петербурга: 191060, Санкт-Петербург, Смольный.
+            Справочная служба Администрации Санкт-Петербурга: (812) 576-41-11
+        </a>
+    </p>
+</footer>
+
+
+
+<!-- Matomo -->
+<script src="/matomo/s.js"></script>
+<!-- End Matomo Code -->
+
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/lib/angular/angular.min.js"></script>
+
+
+
+
+
+</body>
+</html>
